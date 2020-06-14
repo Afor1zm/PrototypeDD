@@ -1,0 +1,19 @@
+# Try to git only scriptfiles.
+logs/
+Library/
+obj/
+Packages/
+ProjectSettings/
+Temp/
+Assets/Animations/
+Assets/Assets/
+Assets/Prefab/
+Assets/Scenes/
+.vs/
+Assets/*.meta
+Assets/Scripts/*.meta
+Assets/Scripts/*.cs.meta
+Assets/Scripts/AbstractClasses/*.meta
+Assets/Scripts/AbstractClasses/*.cs.meta
+Assets/Scripts/Interfaces/*.meta
+Assets/Scripts/Interfaces/*.cs.meta
