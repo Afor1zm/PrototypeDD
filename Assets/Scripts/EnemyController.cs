@@ -9,12 +9,14 @@ public class EnemyController : Unit
     // Start is called before the first frame update
     void Start()
     {
+        SetParameters(false, 5, 7, 20, 3);
         _presenter.UnitGetRigidBody(enemyController);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _presenter.UnitMove(enemyController);
+        Debug.Log("PlayerInitiative " + Initiative);
+        
     }
 }

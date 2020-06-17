@@ -28,5 +28,26 @@ public class Unit : MonoBehaviour, IUnit
     void Update()
     {
 
-    }    
+    }
+
+    public void SetParameters(bool isPlayerTeam, int initiative, int damage, int health, int armor)
+    {
+        IsPlayerTeam = isPlayerTeam;
+        Initiative = initiative;
+        if (IsPlayerTeam == true)
+        {
+            Active = true;
+            InBattle = false;
+        }
+        else
+        {
+            Active = false;
+            InBattle = true;
+        }
+        Damage = damage;
+        Health = health;
+        CurrentHealth = Health;
+        Armor = armor;
+        Alive = true;
+    }
 }

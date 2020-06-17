@@ -6,17 +6,18 @@ public class PlayerController : Unit
 {    
     public PlayerController playerController;
     public Presenter _presenter;
-
-    // Start is called before the first frame update
+    //= new Unit(true,10,15,55,10)
+    
     void Start()
     {
+        SetParameters(true, 10, 15, 55, 10);
         _presenter.UnitGetRigidBody(playerController);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("PlayerInitiative " + Initiative);
         _presenter.UnitMove(playerController);
     }    
 }
