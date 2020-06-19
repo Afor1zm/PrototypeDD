@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AbstractClasses\Unit.cs" />
+    <Compile Include="Assets\Scripts\BattleStart.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
     <Compile Include="Assets\Scripts\GameLogic.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IUnit.cs" />

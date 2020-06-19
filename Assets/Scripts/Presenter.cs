@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Presenter : MonoBehaviour
-{
-    
+{    
     public void UnitMove(Unit _unit)
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -34,5 +33,18 @@ public class Presenter : MonoBehaviour
     public void UnitSetTriggerWalk(Unit _unit)
     {
         _unit.animator.SetTrigger("Walk");
+    }
+
+    public void UnitSetTriggerAttack(Unit _unit)
+    {
+        _unit.animator.SetTrigger("Attack");
+    }
+    public void UnitSetTriggerHurt(Unit _unit)
+    {
+        _unit.animator.SetTrigger("Hurt");
+    }
+    public void UnitSetTriggerDie(Unit _unit)
+    {
+        _unit.animator.SetTrigger("Die");
     }
 }

@@ -30,7 +30,7 @@ public class Unit : MonoBehaviour, IUnit
 
     }
 
-    public void SetParameters(bool isPlayerTeam, int initiative, int damage, int health, int armor)
+    public void Seed(bool isPlayerTeam, int initiative, int damage, int health, int armor)
     {
         IsPlayerTeam = isPlayerTeam;
         Initiative = initiative;

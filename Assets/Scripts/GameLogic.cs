@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<Unit> _battleUnitList;
+    public void BattleStart(List<Unit> battleLogic)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (Unit Inbattle in battleLogic)
+        {
+            Inbattle.InBattle = true;
+        }
     }
 }
