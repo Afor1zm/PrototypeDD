@@ -11,6 +11,7 @@ public class BattleStart : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        _battleLogic.StartBattle(other);     
-    }
+        _battleLogic.StartBattle(other);        
+        _battleLogic.enabled=true;
+    }    
 }

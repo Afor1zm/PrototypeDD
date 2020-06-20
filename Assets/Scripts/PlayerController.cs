@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class PlayerController : Unit
 {    
-    public PlayerController playerController;
+    public PlayerController _playerController;
     public Presenter _presenter;
     public GameLogic _gameLogic;   
 
     void Start()
     {
         Seed(true, 10, 15, 55, 10);
-        _presenter.UnitGetRigidBody(playerController);
-        playerController.State = States.ActiveWorld;
+        _presenter.UnitGetRigidBody(_playerController);
+        _playerController.State = States.ActiveWorld;
     }
    
     void Update()
     {
         if (InBattle == false)
         {
-            _presenter.UnitMove(playerController);
-        }        
+            _presenter.UnitMove(_playerController);
+        } 
+        
+        if (_playerController.State == States.ActiveWorld)
+        {
+            _gameLogic.StopBattle();
+        }
     }    
 }
