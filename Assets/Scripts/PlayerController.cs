@@ -6,17 +6,20 @@ public class PlayerController : Unit
 {    
     public PlayerController playerController;
     public Presenter _presenter;
-    //= new Unit(true,10,15,55,10)
+    public GameLogic _gameLogic;   
 
     void Start()
     {
         Seed(true, 10, 15, 55, 10);
-        _presenter.UnitGetRigidBody(playerController);        
+        _presenter.UnitGetRigidBody(playerController);
+        playerController.State = States.ActiveWorld;
     }
-
-    // Update is called once per frame
+   
     void Update()
-    {        
-        _presenter.UnitMove(playerController);
+    {
+        if (InBattle == false)
+        {
+            _presenter.UnitMove(playerController);
+        }        
     }    
 }

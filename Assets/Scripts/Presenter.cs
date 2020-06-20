@@ -28,6 +28,7 @@ public class Presenter : MonoBehaviour
     {
         _unit.rigidbody2d = _unit.GetComponent<Rigidbody2D>();
         _unit.animator = _unit.GetComponent<Animator>();
+        _unit.SpriteRenderer = _unit.GetComponent<SpriteRenderer>();
     }
 
     public void UnitSetTriggerWalk(Unit _unit)
@@ -46,5 +47,14 @@ public class Presenter : MonoBehaviour
     public void UnitSetTriggerDie(Unit _unit)
     {
         _unit.animator.SetTrigger("Die");
+    }
+
+    public void UnitSetTarget(Unit unit)
+    {
+        unit.SpriteRenderer.material.SetColor("_Color", Color.red);
+    }
+    public void UnitSetUntarget(Unit unit)
+    {
+        unit.SpriteRenderer.material.SetColor("_Color", Color.white);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IUnit
 {
+    public States State { get; set; }
     public float Speed { get; set; }
     public bool IsPlayerTeam { get; set; }
     public int Initiative { get; set; }
@@ -17,18 +18,7 @@ public class Unit : MonoBehaviour, IUnit
     public Rigidbody2D rigidbody2d { get; set; }
     public Vector2 lookDirection { get; set; } = new Vector2(1, 0);
     public Animator animator;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public SpriteRenderer SpriteRenderer { get; set; }
 
     public void Seed(bool isPlayerTeam, int initiative, int damage, int health, int armor)
     {
@@ -50,4 +40,10 @@ public class Unit : MonoBehaviour, IUnit
         Armor = armor;
         Alive = true;
     }
+    public enum States
+    {
+        ActiveWorld,
+        ActiveBattle,
+        WaitingInBattle
+    }   
 }
