@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\EnemyUnit.cs" />
     <Compile Include="Assets\Scripts\GameLogic.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IUnit.cs" />
+    <Compile Include="Assets\Scripts\ParallaxBackground.cs" />
     <Compile Include="Assets\Scripts\PlayerUnit.cs" />
     <Compile Include="Assets\Scripts\Presenter.cs" />
     <Reference Include="UnityEngine">

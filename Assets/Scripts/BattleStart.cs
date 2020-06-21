@@ -18,7 +18,7 @@ public class BattleStart : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
+    {        
         Debug.Log(" " + other);
         playerPosition =_playerUnit.transform.position.x;
         _battleLogic.enabled=true;
