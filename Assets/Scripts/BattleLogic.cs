@@ -9,18 +9,16 @@ public class BattleLogic : MonoBehaviour
     private Unit _target;
     private int enemyCursor = 0;
 
-    private bool IsEnemyTurn { get { return _battleUnitList[numberOfUnit].State == Unit.States.ActiveBattle & _battleUnitList[numberOfUnit].name != "Player"; } }
+    private bool IsEnemyTurn { get { return _battleUnitList[numberActiveUnit].State == Unit.States.ActiveBattle & _battleUnitList[numberActiveUnit].name != "Player"; } }
 
     public PlayerUnit _player;
-    public List<Unit> _battleUnitList = new List<Unit>();
-    public List<Unit> _enemyList = new List<Unit>();
-    public Presenter _presenter;
-    public EnemyUnit _enemyUnit1;
-    public EnemyUnit _enemyUnit2;
-    public EnemyUnit _enemyUnit3;
+    public List<Unit> _battleUnitList;
+    public List<Unit> _enemyList;
+    public Presenter _presenter;    
     public GameLogic _gameLogic;
+    public BattleStart _battleStart;
     public Unit.States states;       
-    public int numberOfUnit;
+    public int numberActiveUnit;
 
 
     private void LateUpdate()
@@ -29,11 +27,12 @@ public class BattleLogic : MonoBehaviour
         {
             _player.InBattle = false;
             _player.State = Unit.States.ActiveWorld;
+            _gameLogic.DeleteTriggeZone();
         }
 
         if (IsEnemyTurn)
         {            
-            Attack(_battleUnitList[numberOfUnit], _player);
+            Attack(_battleUnitList[numberActiveUnit], _player);
         }
 
         if (_player.State == Unit.States.ActiveBattle)
@@ -60,18 +59,16 @@ public class BattleLogic : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            numberOfUnit = 0;                       
-            _battleUnitList.AddRange(new Unit[] { _player, _enemyUnit1, _enemyUnit2, _enemyUnit3 });
-            _enemyList.AddRange(new Unit[] { _enemyUnit1, _enemyUnit2, _enemyUnit3 });
+            numberActiveUnit = 0;
 
             _battleUnitList[0].State = Unit.States.ActiveBattle;
             SwitchTarget(_enemyList[enemyCursor]);
 
-            _gameLogic.BattleStart(_battleUnitList);            
-            _player.State = Unit.States.ActiveBattle;
-            _enemyUnit1.State = Unit.States.WaitingInBattle;
-            _enemyUnit2.State = Unit.States.WaitingInBattle;
-            _enemyUnit3.State = Unit.States.WaitingInBattle;
+            _gameLogic.BattleStart(_battleUnitList);
+            
+            _battleUnitList[1].State = Unit.States.WaitingInBattle;
+            _battleUnitList[2].State = Unit.States.WaitingInBattle;
+            _battleUnitList[3].State = Unit.States.WaitingInBattle;
         }
     }
 
@@ -88,10 +85,10 @@ public class BattleLogic : MonoBehaviour
             _enemyList.Remove(_enemyList[_enemyList.IndexOf(victim)]);
         }
 
-        numberOfUnit = numberOfUnit + 1;
-        if (numberOfUnit >= _battleUnitList.Count)
+        numberActiveUnit = numberActiveUnit + 1;
+        if (numberActiveUnit >= _battleUnitList.Count)
         {
-            numberOfUnit = 0;
+            numberActiveUnit = 0;
         }
 
         StartCoroutine(SimpleWait(attacker));
@@ -103,7 +100,7 @@ public class BattleLogic : MonoBehaviour
         yield return new WaitForSeconds(DELAY);
 
         unit1.State = Unit.States.WaitingInBattle;
-        _battleUnitList[numberOfUnit].State = Unit.States.ActiveBattle;
+        _battleUnitList[numberActiveUnit].State = Unit.States.ActiveBattle;
     }
 
     private void SwitchTarget(Unit newTarget)

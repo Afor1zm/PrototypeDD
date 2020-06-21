@@ -9,10 +9,10 @@ public class EnemyUnit : Unit
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Seed(false, 5, 15, 20, 5);
-        _presenter.UnitGetRigidBody(_enemyController);        
+        _presenter.UnitGetRigidBody(_enemyController);
     }
 
     // Update is called once per frame

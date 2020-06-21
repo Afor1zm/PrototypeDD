@@ -51,7 +51,7 @@ public class Presenter : MonoBehaviour
 
     public void UnitSetTarget(Unit unit)
     {
-        unit.SpriteRenderer.material.SetColor("_Color", Color.red);
+        unit.SpriteRenderer.material.SetColor("_Color", Color.red);        
     }
     public void UnitSetUntarget(Unit unit)
     {
