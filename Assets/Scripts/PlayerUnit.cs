@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : Unit
+public class PlayerUnit : Unit
 {    
-    public PlayerController _playerController;
+    public PlayerUnit _playerController;
     public Presenter _presenter;
-    public GameLogic _gameLogic;   
+    public GameLogic _gameLogic;
+    
 
     void Start()
     {

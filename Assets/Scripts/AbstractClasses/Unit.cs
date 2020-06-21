@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour, IUnit
+public abstract class Unit : MonoBehaviour, IUnit
 {
+    public int _id;
     public States State { get; set; }
     public float Speed { get; set; }
     public bool IsPlayerTeam { get; set; }

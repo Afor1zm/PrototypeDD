@@ -1,100 +1,136 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BattleLogic : MonoBehaviour
 {
-    public PlayerController _player;
+    private const float DELAY = 2f;
+    private Unit _target;
+    private int enemyCursor = 0;
+
+    private bool IsEnemyTurn { get { return _battleUnitList[numberOfUnit].State == Unit.States.ActiveBattle & _battleUnitList[numberOfUnit].name != "Player"; } }
+
+    public PlayerUnit _player;
     public List<Unit> _battleUnitList = new List<Unit>();
-    public List<EnemyController> _enemyList = new List<EnemyController>();
+    public List<Unit> _enemyList = new List<Unit>();
     public Presenter _presenter;
-    public EnemyController _enemyController1;
-    public EnemyController _enemyController2;
-    public EnemyController _enemyController3;
-    public GameLogic _gameLogic;    
-    public Unit.States states;
-    public int target;
-    public int untarget;
+    public EnemyUnit _enemyUnit1;
+    public EnemyUnit _enemyUnit2;
+    public EnemyUnit _enemyUnit3;
+    public GameLogic _gameLogic;
+    public Unit.States states;       
+    public int numberOfUnit;
+
 
     private void LateUpdate()
-    {
-        Debug.Log("Update");
-        try
+    {        
+        if (_enemyList?.Count == 0)
         {
-            if (_enemyList[0].CurrentHealth <= 0 & _enemyList[1].CurrentHealth <= 0 & _enemyList[2].CurrentHealth <= 0)
-            {
-                _player.InBattle = false;
-                _player.State = Unit.States.ActiveWorld;                
-            }
+            _player.InBattle = false;
+            _player.State = Unit.States.ActiveWorld;
         }
-        catch
-        {
 
+        if (IsEnemyTurn)
+        {            
+            Attack(_battleUnitList[numberOfUnit], _player);
         }
 
         if (_player.State == Unit.States.ActiveBattle)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                target = target + 1;
-                untarget = target - 1;
-                if (target > 2)
-                {
-                    target = 0;
-                }
-                _presenter.UnitSetTarget(_enemyList[target]);
-                if (untarget < 0)
-                {
-                    untarget = 2;
-                }
-                _presenter.UnitSetUntarget(_enemyList[untarget]);
+                NextTarget(1);
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                target = target - 1;
-                untarget = target + 1;
-                if (target < 0)
-                {
-                    target = 2;
-                }
-                _presenter.UnitSetTarget(_enemyList[target]);
-                if (untarget > 2)
-                {
-                    untarget = 0;
-                }
-                _presenter.UnitSetUntarget(_enemyList[untarget]);
+                NextTarget(-1);
             }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _gameLogic.Attack(_player, _enemyList[target]);
-                Debug.Log("LOG " + _enemyList[target].CurrentHealth + " untarget " + untarget);
+                Attack(_player, _target);
+                SwitchTarget(_enemyList[0]);
             }
         }
     }
+
     public void StartBattle(Collider2D other)
-    {        
+    {
         if (other.gameObject.name == "Player")
         {
-            target = 0;
-            untarget = target;
-            
-            _battleUnitList.Add(_player);
-            _battleUnitList.Add(_enemyController1);
-            _battleUnitList.Add(_enemyController2);
-            _battleUnitList.Add(_enemyController3);
-            _enemyList.Add(_enemyController1);
-            _enemyList.Add(_enemyController2);
-            _enemyList.Add(_enemyController3);
-            
-            _presenter.UnitSetTarget(_enemyList[target]);
+            numberOfUnit = 0;                       
+            _battleUnitList.AddRange(new Unit[] { _player, _enemyUnit1, _enemyUnit2, _enemyUnit3 });
+            _enemyList.AddRange(new Unit[] { _enemyUnit1, _enemyUnit2, _enemyUnit3 });
 
-            _gameLogic.BattleStart(_battleUnitList);
-            Debug.Log("LOG " + _enemyList[target].CurrentHealth + " untarget " + untarget);
+            _battleUnitList[0].State = Unit.States.ActiveBattle;
+            SwitchTarget(_enemyList[enemyCursor]);
+
+            _gameLogic.BattleStart(_battleUnitList);            
             _player.State = Unit.States.ActiveBattle;
-            _enemyController1.State = Unit.States.WaitingInBattle;
-            _enemyController2.State = Unit.States.WaitingInBattle;
-            _enemyController3.State = Unit.States.WaitingInBattle;
+            _enemyUnit1.State = Unit.States.WaitingInBattle;
+            _enemyUnit2.State = Unit.States.WaitingInBattle;
+            _enemyUnit3.State = Unit.States.WaitingInBattle;
         }
+    }
+
+    public void Attack(Unit attacker, Unit victim)
+    {        
+        _presenter.UnitSetTriggerAttack(attacker);
+        _presenter.UnitSetTriggerHurt(victim);
+        victim.CurrentHealth = victim.CurrentHealth + victim.Armor - attacker.Damage;
+        if (victim.CurrentHealth <= 0)
+        {            
+            _presenter.UnitSetTriggerDie(victim);
+            _presenter.UnitSetUntarget(victim);
+            _battleUnitList.Remove(_battleUnitList[_battleUnitList.IndexOf(victim)]);
+            _enemyList.Remove(_enemyList[_enemyList.IndexOf(victim)]);
+        }
+
+        numberOfUnit = numberOfUnit + 1;
+        if (numberOfUnit >= _battleUnitList.Count)
+        {
+            numberOfUnit = 0;
+        }
+
+        StartCoroutine(SimpleWait(attacker));
+
+    }
+
+    IEnumerator SimpleWait(Unit unit1)
+    {
+        yield return new WaitForSeconds(DELAY);
+
+        unit1.State = Unit.States.WaitingInBattle;
+        _battleUnitList[numberOfUnit].State = Unit.States.ActiveBattle;
+    }
+
+    private void SwitchTarget(Unit newTarget)
+    {
+        if (_target != null)
+        {
+            _presenter.UnitSetUntarget(_target);
+        }
+        _target = newTarget;
+        _presenter.UnitSetTarget(_target);
+    }
+
+    private void NextTarget(int direction)
+    {        
+        enemyCursor = enemyCursor + direction;        
+        if (_enemyList.Count != 1)
+        {
+            if (enemyCursor > _enemyList.Count - 1)
+            {
+                enemyCursor = 0;
+            }            
+            if (enemyCursor < 0)
+            {
+                enemyCursor = _enemyList.Count - 1;
+            }
+            SwitchTarget(_enemyList[enemyCursor]);
+        }
+        else {SwitchTarget(_enemyList[0]); }        
     }
 }
