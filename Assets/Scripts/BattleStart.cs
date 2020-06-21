@@ -7,11 +7,11 @@ using UnityEngine.UIElements;
 
 public class BattleStart : MonoBehaviour
 {
-    public GameObject battleTriggerZone;
+    public BattleStart _battleStart;
+    public GameObject _battleTriggerZone;
     public List<Unit> _battleUnitList = new List<Unit>();
     public List<Unit> _enemyList = new List<Unit>();
     public BattleLogic _battleLogic;
-    public GameObject _enemyObject;
     public GameLogic _gameLogic;
     public PlayerUnit _playerUnit;
     private float playerPosition;
@@ -29,7 +29,8 @@ public class BattleStart : MonoBehaviour
         _gameLogic.CreateOrcEnemy(playerPosition + 14f, -3.55f, -3f, _battleUnitList, _enemyList);
         _battleLogic._battleUnitList = _battleUnitList;
         _battleLogic._enemyList = _enemyList;
-        _battleLogic.StartBattle(other); 
+        _battleLogic.StartBattle(other);
+        _battleLogic._battleStart = _battleStart;
     }   
     
 }

@@ -6,8 +6,7 @@ public class PlayerUnit : Unit
 {    
     public PlayerUnit _playerController;
     public Presenter _presenter;
-    public GameLogic _gameLogic;
-    
+    public GameLogic _gameLogic;    
 
     void Start()
     {
@@ -17,7 +16,7 @@ public class PlayerUnit : Unit
     }
    
     void Update()
-    {
+    {        
         if (InBattle == false)
         {
             _presenter.UnitMove(_playerController);

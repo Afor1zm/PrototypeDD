@@ -17,6 +17,7 @@ public class BattleLogic : MonoBehaviour
     public Presenter _presenter;    
     public GameLogic _gameLogic;
     public BattleStart _battleStart;
+    
     public Unit.States states;       
     public int numberActiveUnit;
 
@@ -27,7 +28,7 @@ public class BattleLogic : MonoBehaviour
         {
             _player.InBattle = false;
             _player.State = Unit.States.ActiveWorld;
-            _gameLogic.DeleteTriggeZone();
+            _gameLogic.DeleteTriggeZone(_battleStart._battleTriggerZone);
         }
 
         if (IsEnemyTurn)

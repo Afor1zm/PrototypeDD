@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameLogic : MonoBehaviour
-{
-    public GameObject battleTriggerZone;
+{    
     public BattleLogic _battleLogic;
     public Presenter _presenter;
     public GameObject _enemyObject; 
@@ -35,7 +34,7 @@ public class GameLogic : MonoBehaviour
         _presenter.UnitGetRigidBody(_enemyObject.GetComponent<Unit>());
     }
 
-    public void DeleteTriggeZone()
+    public void DeleteTriggeZone(GameObject battleTriggerZone)
     {
         Destroy(battleTriggerZone);
     }
