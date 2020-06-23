@@ -15,6 +15,8 @@ public class BattleStart : MonoBehaviour
     public GameLogic _gameLogic;
     public PlayerUnit _playerUnit;
     private float playerPosition;
+    public GameObject _unitUI;
+    
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,9 +26,9 @@ public class BattleStart : MonoBehaviour
         _battleLogic.enabled=true;
         _battleUnitList.Add(other.GetComponent<Unit>());
 
-        _gameLogic.CreateOrcEnemy(playerPosition + 10, -3.55f, -3f, _battleUnitList, _enemyList);
-        _gameLogic.CreateOrcEnemy(playerPosition + 12, -3.55f, -3f, _battleUnitList, _enemyList);
-        _gameLogic.CreateOrcEnemy(playerPosition + 14f, -3.55f, -3f, _battleUnitList, _enemyList);
+        _gameLogic.CreateOrcEnemy(playerPosition + 17f, -3.55f, -3f, _battleUnitList, _enemyList, _unitUI, 750f);
+        _gameLogic.CreateOrcEnemy(playerPosition + 20f, -3.55f, -3f, _battleUnitList, _enemyList, _unitUI, 875f);
+        _gameLogic.CreateOrcEnemy(playerPosition + 23f, -3.55f, -3f, _battleUnitList, _enemyList, _unitUI, 1000f);
         _battleLogic._battleUnitList = _battleUnitList;
         _battleLogic._enemyList = _enemyList;
         _battleLogic.StartBattle(other);

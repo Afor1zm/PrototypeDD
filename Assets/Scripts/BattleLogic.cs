@@ -40,12 +40,12 @@ public class BattleLogic : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                NextTarget(1);
+                NextTarget(-1);
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                NextTarget(-1);
+                NextTarget(1);
             }
 
             if (Input.GetKeyDown(KeyCode.Space))

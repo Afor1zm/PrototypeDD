@@ -6,7 +6,14 @@ public class GameLogic : MonoBehaviour
 {    
     public BattleLogic _battleLogic;
     public Presenter _presenter;
-    public GameObject _enemyObject; 
+    public GameObject _enemyObject;
+    public GameObject _uiObject;
+    public GameObject _parentUI;    
+    private GUIUnitParameters GetGUIComponent;
+    private Unit enemyObjectUnit;
+   // private UIHealthBar uiHealthBar;
+    private EnemyUnit enemyUnitComponent;
+
 
     private void Start()
     {
@@ -26,12 +33,30 @@ public class GameLogic : MonoBehaviour
         _battleLogic.enabled = false;        
     }
 
-    public void CreateOrcEnemy(float xCoordinate, float yCoordinate, float Zcoordinate, List<Unit> _battleUnitList, List<Unit> _enemyList)
+    public void CreateOrcEnemy(float xCoordinate, float yCoordinate, float Zcoordinate, List<Unit> _battleUnitList, List<Unit> _enemyList, GameObject unitUI, float distance)
     {
+        
         _enemyObject = Instantiate(_enemyObject, new Vector3(xCoordinate, yCoordinate, Zcoordinate), Quaternion.identity) as GameObject;
-        _battleUnitList.Add(_enemyObject.GetComponent<Unit>());
-        _enemyList.Add(_enemyObject.GetComponent<Unit>());
-        _presenter.UnitGetRigidBody(_enemyObject.GetComponent<Unit>());
+        enemyObjectUnit = _enemyObject.GetComponent<Unit>();
+        enemyUnitComponent = _enemyObject.GetComponent<EnemyUnit>();
+
+        _battleUnitList.Add(enemyObjectUnit);
+        _enemyList.Add(enemyObjectUnit);
+        _presenter.UnitGetRigidBody(enemyObjectUnit);
+        
+
+
+
+        _uiObject = Instantiate(_uiObject, new Vector3(unitUI.transform.position.x + distance, unitUI.transform.position.y, 0f), Quaternion.identity, _parentUI.transform);
+        GetGUIComponent = _uiObject.GetComponent<GUIUnitParameters>();
+        GetGUIComponent.GetUnit(enemyObjectUnit);
+
+        //uiHealthBar = _uiObject.GetComponentInChildren<UIHealthBar>();
+        //enemyUnitComponent.uiHealthbar = uiHealthBar;
+        //enemyUnitComponent.uiHealthbar.SetValue(enemyObjectUnit.CurrentHealth / (float)enemyObjectUnit.Health);
+        _uiObject.transform.SetParent(_parentUI.transform, false);
+
+
     }
 
     public void DeleteTriggeZone(GameObject battleTriggerZone)
