@@ -8,7 +8,7 @@ public class PlayerUnit : Unit
     public Presenter _presenter;
     public GameLogic _gameLogic;
     public GUIUnitParameters _gui;
-    //public UIHealthBar uiHealthbar;
+    public UIHealthBar uiHealthbar;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class PlayerUnit : Unit
    
     void Update()
     {
-        UIHealthBar.instance.SetValue(CurrentHealth / (float)Health);
+        uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
         if (InBattle == false)
         {
             _presenter.UnitMove(_playerController);

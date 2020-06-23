@@ -6,7 +6,7 @@ public class EnemyUnit : Unit
 {
     public EnemyUnit _enemyController;
     public Presenter _presenter;
-    //public UIHealthBar uiHealthbar;
+    public UIHealthBar uiHealthbar;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,6 +23,6 @@ public class EnemyUnit : Unit
     // Update is called once per frame
     void Update()
     {
-        //uiHealthbar.SetValue(CurrentHealth / (float)Health);
+        uiHealthbar.SetValue(CurrentHealth / (float)Health);
     }
 }

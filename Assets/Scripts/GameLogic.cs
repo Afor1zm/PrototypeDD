@@ -11,7 +11,7 @@ public class GameLogic : MonoBehaviour
     public GameObject _parentUI;    
     private GUIUnitParameters GetGUIComponent;
     private Unit enemyObjectUnit;
-   // private UIHealthBar uiHealthBar;
+    private UIHealthBar uiHealthBar;
     private EnemyUnit enemyUnitComponent;
 
 
@@ -51,9 +51,9 @@ public class GameLogic : MonoBehaviour
         GetGUIComponent = _uiObject.GetComponent<GUIUnitParameters>();
         GetGUIComponent.GetUnit(enemyObjectUnit);
 
-        //uiHealthBar = _uiObject.GetComponentInChildren<UIHealthBar>();
-        //enemyUnitComponent.uiHealthbar = uiHealthBar;
-        //enemyUnitComponent.uiHealthbar.SetValue(enemyObjectUnit.CurrentHealth / (float)enemyObjectUnit.Health);
+        uiHealthBar = _uiObject.GetComponentInChildren<UIHealthBar>();
+        enemyUnitComponent.uiHealthbar = uiHealthBar;
+        
         _uiObject.transform.SetParent(_parentUI.transform, false);
 
 
