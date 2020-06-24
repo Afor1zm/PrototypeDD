@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 public class BattleStart : MonoBehaviour
 {
     public BattleStart _battleStart;
+
+    // _battleTriggerZone need for GameLogic. It's need to know wich object should be destroy after battle.
     public GameObject _battleTriggerZone;
     public List<Unit> _battleUnitList = new List<Unit>();
     public List<Unit> _enemyList = new List<Unit>();

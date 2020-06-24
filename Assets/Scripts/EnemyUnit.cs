@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyUnit : Unit
 {
-    public EnemyUnit _enemyController;
+    public EnemyUnit _enemyUnit;
     public Presenter _presenter;
     public UIHealthBar uiHealthbar;
 
@@ -12,7 +12,7 @@ public class EnemyUnit : Unit
     void Awake()
     {
         Seed(false, 5, 15, 20, 5);
-        _presenter.UnitGetRigidBody(_enemyController);
+        _presenter.UnitGetRigidBody(_enemyUnit);
         
     }
     private void Start()

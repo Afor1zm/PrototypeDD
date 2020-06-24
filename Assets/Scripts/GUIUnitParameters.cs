@@ -8,8 +8,7 @@ public class GUIUnitParameters : MonoBehaviour
     public Unit _unit;
     public Text _healthText;
     public Text _armorText;
-    public Text _damageText;
-    
+    public Text _damageText;    
 
     private void Awake()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerUnit : Unit
 {    
-    public PlayerUnit _playerController;
+    public PlayerUnit _playerUnit;
     public Presenter _presenter;
     public GameLogic _gameLogic;
     public GUIUnitParameters _gui;
@@ -13,9 +13,9 @@ public class PlayerUnit : Unit
     void Start()
     {
         Seed(true, 10, 15, 55, 10);
-        _presenter.UnitGetRigidBody(_playerController);
-        _playerController.State = States.ActiveWorld;
-        _gui.GetUnit(_playerController);
+        _presenter.UnitGetRigidBody(_playerUnit);
+        _playerUnit.State = States.ActiveWorld;
+        _gui.GetUnit(_playerUnit);
     }
    
     void Update()
@@ -23,12 +23,17 @@ public class PlayerUnit : Unit
         uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
         if (InBattle == false)
         {
-            _presenter.UnitMove(_playerController);
+            _presenter.PlayerMove(_playerUnit);
         } 
         
-        if (_playerController.State == States.ActiveWorld)
+        if (_playerUnit.State == States.ActiveWorld)
         {
             _gameLogic.StopBattle();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            _presenter.UnitMove(_playerUnit);
         }
     }    
 }

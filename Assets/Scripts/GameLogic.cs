@@ -43,20 +43,14 @@ public class GameLogic : MonoBehaviour
         _battleUnitList.Add(enemyObjectUnit);
         _enemyList.Add(enemyObjectUnit);
         _presenter.UnitGetRigidBody(enemyObjectUnit);
-        
-
-
 
         _uiObject = Instantiate(_uiObject, new Vector3(unitUI.transform.position.x + distance, unitUI.transform.position.y, 0f), Quaternion.identity, _parentUI.transform);
         GetGUIComponent = _uiObject.GetComponent<GUIUnitParameters>();
         GetGUIComponent.GetUnit(enemyObjectUnit);
 
         uiHealthBar = _uiObject.GetComponentInChildren<UIHealthBar>();
-        enemyUnitComponent.uiHealthbar = uiHealthBar;
-        
+        enemyUnitComponent.uiHealthbar = uiHealthBar;        
         _uiObject.transform.SetParent(_parentUI.transform, false);
-
-
     }
 
     public void DeleteTriggeZone(GameObject battleTriggerZone)
