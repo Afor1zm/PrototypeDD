@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class Unit : MonoBehaviour, IUnit
 {
     public int _id;
+    public int Expirience{get;set;}
+    public int Gold { get; set; }
     public States State { get; set; }
     public float Speed { get; set; }
     public bool IsPlayerTeam { get; set; }

@@ -52,8 +52,10 @@ public class BattleLogic : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Attack(_player, _target);
-                SwitchTarget(_enemyList[0]);
-                Debug.Log("11111111");
+                if (_enemyList[0] != null)
+                {
+                    SwitchTarget(_enemyList[0]);
+                } 
             }
         }
     }
@@ -62,8 +64,7 @@ public class BattleLogic : MonoBehaviour
     {
         if (other.gameObject.name == "Player")
         {
-            numberActiveUnit = 0;
-            Debug.Log("12312312313");
+            numberActiveUnit = 0;            
             _battleUnitList[0].State = Unit.States.ActiveBattle;
             SwitchTarget(_enemyList[enemyCursor]);
 
@@ -86,10 +87,12 @@ public class BattleLogic : MonoBehaviour
             _presenter.UnitSetUntarget(victim);
             _battleUnitList.Remove(_battleUnitList[_battleUnitList.IndexOf(victim)]);
             _enemyList.Remove(_enemyList[_enemyList.IndexOf(victim)]);
+            _gameLogic.TransferGold(victim, attacker);
+            _gameLogic.ReciveExpirience(victim, attacker);
         }
 
         numberActiveUnit = numberActiveUnit + 1;
-        if (numberActiveUnit >= _battleUnitList.Count)
+        if (numberActiveUnit >= _battleUnitList.Count & _battleUnitList.Count !=0)
         {
             numberActiveUnit = 0;
         }

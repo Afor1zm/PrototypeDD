@@ -12,6 +12,7 @@ public class PlayerUnit : Unit
     public GUIUnitParameters _gui;
     public UIHealthBar uiHealthbar;
     public GameObject _playerObject;
+    public int Level;
     //Vector2 endPosition;
 
     void Start()
@@ -24,7 +25,8 @@ public class PlayerUnit : Unit
     }
    
     void Update()
-    {        
+    {
+        
         uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
         if (InBattle == false)
         {

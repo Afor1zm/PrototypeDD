@@ -66,4 +66,14 @@ public class GameLogic : MonoBehaviour
         }
         
     }
+
+    public void TransferGold(Unit giver, Unit reciver)
+    {
+        reciver.Gold += giver.Gold;
+    }
+
+    public void ReciveExpirience(Unit giver, Unit reciver)
+    {
+        reciver.Expirience += giver.Expirience;
+    }
 }
