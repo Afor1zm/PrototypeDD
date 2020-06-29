@@ -8,6 +8,7 @@ public class UIHealthBar : MonoBehaviour
     public UIHealthBar instance { get; private set; }
     public Image mask;
     float originalSize;
+    public float _value;
 
     void Awake()
     {
@@ -22,5 +23,6 @@ public class UIHealthBar : MonoBehaviour
     public void SetValue(float value)
     {
         mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
+        _value = value;
     }
 }

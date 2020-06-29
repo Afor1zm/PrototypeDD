@@ -17,6 +17,7 @@ public class BattleLogic : MonoBehaviour
     public Presenter _presenter;    
     public GameLogic _gameLogic;
     public BattleStart _battleStart;
+    public GameObject _deliteTriggerZone;
     
     public Unit.States states;       
     public int numberActiveUnit;
@@ -28,7 +29,7 @@ public class BattleLogic : MonoBehaviour
         {
             _player.InBattle = false;
             _player.State = Unit.States.ActiveWorld;
-            _gameLogic.DeleteTriggeZone(_battleStart._battleTriggerZone);
+            _gameLogic.DeleteTriggeZone(_deliteTriggerZone);
         }
 
         if (IsEnemyTurn)
@@ -52,6 +53,7 @@ public class BattleLogic : MonoBehaviour
             {
                 Attack(_player, _target);
                 SwitchTarget(_enemyList[0]);
+                Debug.Log("11111111");
             }
         }
     }
@@ -61,7 +63,7 @@ public class BattleLogic : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             numberActiveUnit = 0;
-
+            Debug.Log("12312312313");
             _battleUnitList[0].State = Unit.States.ActiveBattle;
             SwitchTarget(_enemyList[enemyCursor]);
 

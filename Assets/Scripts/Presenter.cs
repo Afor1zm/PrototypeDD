@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class Presenter : MonoBehaviour
@@ -24,17 +25,17 @@ public class Presenter : MonoBehaviour
         }
     }
 
-    public void UnitMove (Unit unit)
-    {
-        Transform startPoint;
-        //startPoint = transform.position(unit);
-        Vector2 position = unit.rigidbody2d.position;
-        Vector2 move = new Vector2(position.x +50, 0);
-        //position = position + move  * 50 * Time.deltaTime;
-        unit.rigidbody2d.MovePosition(position);
+    public void UnitMove (Unit unit, Vector2 endPoint)
+    {        
+        Vector2 unitPosition = new Vector2(unit.rigidbody2d.position.x, unit.rigidbody2d.position.y);               
+        Vector2 movement = Vector2.MoveTowards(unitPosition, endPoint, 40f * Time.deltaTime);
+        unit.rigidbody2d.MovePosition(movement);
         UnitSetTriggerWalk(unit);
-        transform.position = Vector2.Lerp(transform.position, move, 1f * Time.deltaTime);
-        //transform.position = Vector2.ler
+    }
+
+    public Vector2 GetEndPosition(Unit unit)
+    {
+        return new Vector2(unit.rigidbody2d.position.x - 13.74f, unit.rigidbody2d.position.y);
     }
 
     public void UnitGetRigidBody(Unit unit)

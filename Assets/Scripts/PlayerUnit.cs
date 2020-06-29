@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class PlayerUnit : Unit
 {    
@@ -9,6 +11,8 @@ public class PlayerUnit : Unit
     public GameLogic _gameLogic;
     public GUIUnitParameters _gui;
     public UIHealthBar uiHealthbar;
+    public GameObject _playerObject;
+    //Vector2 endPosition;
 
     void Start()
     {
@@ -16,10 +20,11 @@ public class PlayerUnit : Unit
         _presenter.UnitGetRigidBody(_playerUnit);
         _playerUnit.State = States.ActiveWorld;
         _gui.GetUnit(_playerUnit);
+        //endPosition = _presenter.GetEndPosition(_playerUnit);
     }
    
     void Update()
-    {
+    {        
         uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
         if (InBattle == false)
         {
@@ -29,11 +34,6 @@ public class PlayerUnit : Unit
         if (_playerUnit.State == States.ActiveWorld)
         {
             _gameLogic.StopBattle();
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            _presenter.UnitMove(_playerUnit);
-        }
+        }        
     }    
 }
