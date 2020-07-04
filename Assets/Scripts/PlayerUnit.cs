@@ -12,7 +12,9 @@ public class PlayerUnit : Unit
     public GUIUnitParameters _gui;
     public UIHealthBar uiHealthbar;
     public GameObject _playerObject;
-    public int Level;
+    public int Level;    
+    public GameObject _Inventory;
+    public GameObject _vendorInventory;
     //Vector2 endPosition;
 
     void Start()
@@ -36,6 +38,12 @@ public class PlayerUnit : Unit
         if (_playerUnit.State == States.ActiveWorld)
         {
             _gameLogic.StopBattle();
-        }        
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            _Inventory.SetActive(!_Inventory.activeSelf);
+            _vendorInventory.SetActive(!_vendorInventory.activeSelf);
+        }
     }    
 }

@@ -10,11 +10,13 @@ public class GameLogic : MonoBehaviour
     public GameObject _enemyObject;
     public GameObject _uiObjectPrefab;
     public GameObject _uiObject;
-    public GameObject _parentUI;    
+    public GameObject _parentUI;
+    public Inventory _inventory;
     private GUIUnitParameters GetGUIComponent;
     private Unit enemyObjectUnit;
     private UIHealthBar uiHealthBar;
     private EnemyUnit enemyUnitComponent;
+    
 
 
     private void Start()
@@ -69,7 +71,19 @@ public class GameLogic : MonoBehaviour
 
     public void TransferGold(Unit giver, Unit reciver)
     {
-        reciver.Gold += giver.Gold;
+        if (reciver.IsPlayerTeam)
+        {
+            reciver.Gold += giver.Gold;
+            _inventory.Gold += giver.Gold;
+            _inventory._goldText.text = " " + _inventory.Gold;
+        }
+        else
+        {
+            reciver.Gold += giver.Gold;
+            _inventory.Gold -= giver.Gold;
+            _inventory._goldText.text = " " + _inventory.Gold;
+        }
+        
     }
 
     public void ReciveExpirience(Unit giver, Unit reciver)
