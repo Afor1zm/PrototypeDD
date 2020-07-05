@@ -12,7 +12,10 @@ public class Item : MonoBehaviour, IPointerClickHandler
     public GameObject _playerItem;
     public GameObject _parentUI;
     public Inventory _Inventory;    
-    public VendorInventory _vendorInventory;   
+    public VendorInventory _vendorInventory;
+    public int itemIndex;
+    public Item itemComponent;
+    public GameLogic _gameLogic;
     
 
     public void Awake()
@@ -23,25 +26,17 @@ public class Item : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        itemIndex = _Inventory.GetFirstEmptySlot();
         if ( _Inventory.ItemLogicList.All(p => p.EmptySlot == false))
         {
             Debug.Log("Inventory FULL");
         }
         else
         {
-            if (_vendorInventory != null & _Inventory.ItemLogicList[_Inventory.GetFirstEmptySlot()].EmptySlot == true)
+            if (_vendorInventory != null & _Inventory.ItemLogicList[itemIndex].EmptySlot == true)
             {
-                _item.transform.position = _Inventory.PositionList[_Inventory.GetFirstEmptySlot()];
-                //_playerItem = Instantiate(_item, new Vector3(_Inventory.PositionList[_Inventory.GetFirstEmptySlot()].x, _Inventory.PositionList[_Inventory.GetFirstEmptySlot()].y, _Inventory.PositionList[_Inventory.GetFirstEmptySlot()].z), Quaternion.identity, _parentUI.transform);
-                _Inventory.ItemLogicList[_Inventory.GetFirstEmptySlot()].EmptySlot = false;
-                _item.transform.SetParent(_parentUI.transform, true);
-                //Destroy(_item);
+                _gameLogic.TransferItem(_Inventory, this);
             }
         }        
-    }
-
-    public void Update()
-    {
-        
     }
 }
