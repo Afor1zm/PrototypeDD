@@ -11,11 +11,13 @@ public class GameLogic : MonoBehaviour
     public GameObject _uiObjectPrefab;
     public GameObject _uiObject;
     public GameObject _parentUI;
-    public Inventory _inventory;
+    public Inventory _playerInventory;
+    public Inventory _vendorInventory;
     private GUIUnitParameters GetGUIComponent;
     private Unit enemyObjectUnit;
     private UIHealthBar uiHealthBar;
     private EnemyUnit enemyUnitComponent;
+
     
 
 
@@ -27,9 +29,9 @@ public class GameLogic : MonoBehaviour
 
     public void BattleStart(List<Unit> unitList)
     {
-        foreach (Unit Inbattle in unitList)
+        foreach (Unit unit in unitList)
         {
-            Inbattle.InBattle = true;
+            unit.InBattle = true;
         }        
     }   
     
@@ -74,20 +76,24 @@ public class GameLogic : MonoBehaviour
         if (reciver.IsPlayerTeam)
         {
             reciver.Gold += giver.Gold;
-            _inventory.Gold += giver.Gold;
-            _inventory._goldText.text = " " + _inventory.Gold;
+            _playerInventory.Gold += giver.Gold;
+            _playerInventory.GoldText.text = " " + _playerInventory.Gold;
         }
         else
         {
             reciver.Gold += giver.Gold;
-            _inventory.Gold -= giver.Gold;
-            _inventory._goldText.text = " " + _inventory.Gold;
+            _playerInventory.Gold -= giver.Gold;
+            _playerInventory.GoldText.text = " " + _playerInventory.Gold;
         }
-        
+
     }
 
     public void ReciveExpirience(Unit giver, Unit reciver)
     {
         reciver.Expirience += giver.Expirience;
+    }
+    public void TransferItem()
+    {
+
     }
 }

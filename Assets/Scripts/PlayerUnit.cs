@@ -15,7 +15,6 @@ public class PlayerUnit : Unit
     public int Level;    
     public GameObject _Inventory;
     public GameObject _vendorInventory;
-    //Vector2 endPosition;
 
     void Start()
     {

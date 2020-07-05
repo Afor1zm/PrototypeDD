@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VendorInventory : MonoBehaviour
+public class VendorInventory : Inventory
 {
     public GameObject _vendorInventory;
-    public int Gold { get; set; }
+    
     public Text _vendorGold;
 
     // Start is called before the first frame update
