@@ -45,7 +45,10 @@ public class PlayerUnit : Unit
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            _Inventory.SetActive(!_Inventory.activeSelf);            
+            if(_vendorInventory.activeSelf == false)
+            {
+                _Inventory.SetActive(!_Inventory.activeSelf);
+            }                        
         }
 
 
