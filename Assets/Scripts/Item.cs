@@ -19,21 +19,20 @@ public class Item : MonoBehaviour, IPointerClickHandler
 
     public void Awake()
     {
-        _vendorInventory = GetComponentInParent<VendorInventory>();
-        _Inventory = _playerInventory.GetComponent<Inventory>();
+        //_vendorInventory = GetComponentInParent<VendorInventory>();        
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    {
-        itemIndex = _Inventory.GetFirstEmptySlot();
+    {        
         if ( _Inventory.ItemLogicList.All(p => p.EmptySlot == false))
         {
             Debug.Log("Inventory FULL");
         }
         else
         {
+            itemIndex = _Inventory.GetFirstEmptySlot();
             if (_vendorInventory != null & _Inventory.ItemLogicList[itemIndex].EmptySlot == true)
-            {
+            {                
                 _gameLogic.TransferItem(_Inventory, this);
             }
         }        

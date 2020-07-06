@@ -10,8 +10,7 @@ public class PlayerUnit : Unit
     public Presenter _presenter;
     public GUIUnitParameters _gui;
     public UIHealthBar uiHealthbar;
-    public GameLogic _gameLogic;
-    public GameObject _Inventory;
+    public GameLogic _gameLogic;    
     public GameObject _vendorInventory;
     public GameObject _playerInventory;    
     public GameObject _playerObject;
@@ -20,7 +19,7 @@ public class PlayerUnit : Unit
 
     void Start()
     {
-        _Inventory.SetActive(false);
+        _playerInventory.SetActive(false);
         _vendorInventory.SetActive(false);
         Seed(true, 10, 15, 55, 10);
         _presenter.UnitGetRigidBody(_playerUnit);
@@ -47,7 +46,7 @@ public class PlayerUnit : Unit
         {
             if(_vendorInventory.activeSelf == false)
             {
-                _Inventory.SetActive(!_Inventory.activeSelf);
+                _playerInventory.SetActive(!_playerInventory.activeSelf);
             }                        
         }
 

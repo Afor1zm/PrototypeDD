@@ -11,8 +11,7 @@ public class VendorInventory : Inventory
 
     // Start is called before the first frame update
     void Start()
-    {
-        _vendorInventory.SetActive(true);
+    {        
         _vendorGold.text = "0";
     }
 

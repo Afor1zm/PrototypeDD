@@ -32,8 +32,7 @@ public class Inventory : MonoBehaviour
 
     public int GetFirstEmptySlot()
     {
-        var itemSlot = ItemLogicList.IndexOf(ItemLogicList.First(p => p.EmptySlot == true));
-        Debug.Log(" YA NE ZNAYU"+ itemSlot);
+        var itemSlot = ItemLogicList.IndexOf(ItemLogicList.First(p => p.EmptySlot == true));        
         return itemSlot;
     }
 }
