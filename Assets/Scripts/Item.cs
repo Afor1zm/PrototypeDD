@@ -8,8 +8,7 @@ public class Item : MonoBehaviour, IPointerClickHandler
 {
     public bool EmptySlot { get; set; }
     public GameObject _item;
-    public GameObject _playerInventory;
-    public GameObject _playerItem;
+    public GameObject _playerInventory;    
     public GameObject _parentUI;
     public Inventory _Inventory;    
     public VendorInventory _vendorInventory;
@@ -21,7 +20,7 @@ public class Item : MonoBehaviour, IPointerClickHandler
     public void Awake()
     {
         _vendorInventory = GetComponentInParent<VendorInventory>();
-        _Inventory = _playerInventory.GetComponent<Inventory>();       
+        _Inventory = _playerInventory.GetComponent<Inventory>();
     }
 
     public void OnPointerClick(PointerEventData eventData)

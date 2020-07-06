@@ -8,16 +8,20 @@ public class PlayerUnit : Unit
 {    
     public PlayerUnit _playerUnit;
     public Presenter _presenter;
-    public GameLogic _gameLogic;
     public GUIUnitParameters _gui;
     public UIHealthBar uiHealthbar;
-    public GameObject _playerObject;
-    public int Level;    
+    public GameLogic _gameLogic;
     public GameObject _Inventory;
     public GameObject _vendorInventory;
+    public GameObject _playerInventory;    
+    public GameObject _playerObject;
+    public bool canTrade;
+    public int Level;     
 
     void Start()
     {
+        _Inventory.SetActive(false);
+        _vendorInventory.SetActive(false);
         Seed(true, 10, 15, 55, 10);
         _presenter.UnitGetRigidBody(_playerUnit);
         _playerUnit.State = States.ActiveWorld;
@@ -41,8 +45,37 @@ public class PlayerUnit : Unit
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            _Inventory.SetActive(!_Inventory.activeSelf);
-            _vendorInventory.SetActive(!_vendorInventory.activeSelf);
+            _Inventory.SetActive(!_Inventory.activeSelf);            
+        }
+
+
+        if (canTrade)
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if (_playerInventory.activeSelf == _vendorInventory.activeSelf)
+                {
+
+                    _playerInventory.SetActive(!_playerInventory.activeSelf);
+                    _vendorInventory.SetActive(!_vendorInventory.activeSelf);
+                }
+                else
+                {
+                    if (_playerInventory.activeSelf == false)
+                    {
+
+                        _playerInventory.SetActive(!_playerInventory.activeSelf);
+                    }
+                    else
+                    {
+                        _vendorInventory.SetActive(!_vendorInventory.activeSelf);
+                    }
+                }
+            }
+        }
+        else
+        {
+            _vendorInventory.SetActive(false);
         }
     }    
 }

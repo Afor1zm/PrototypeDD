@@ -8,7 +8,7 @@ public class PlayerInventory : Inventory
     public Text GoldText1;
     // Start is called before the first frame update
     void Start()
-    {
+    {        
         GoldText1.text = "" + Gold;
         Gold = 0;
         ItemList.Add(EmptyItemSlot1);
