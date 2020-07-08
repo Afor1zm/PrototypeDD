@@ -90,19 +90,27 @@ public class GameLogic : MonoBehaviour
         reciver.Expirience += giver.Expirience;
     }
     public void TransferItem(Inventory giver, Inventory reciever, Item item, GameObject nextParent)
-    {
-        item._item.transform.position = reciever.PositionList[item.itemIndex];
-        item._item.transform.SetParent(nextParent.transform, true);
-        reciever.ItemList[item.itemIndex] = item._item;        
-        reciever.ItemLogicList[item.itemIndex] = item;
-        reciever.ItemLogicList[item.itemIndex].EmptySlot = false;        
-        giver.ItemLogicList[item.parentItemIndex] = giver.ParentEmptySlot.GetComponent<Item>();
-        giver.ItemList[item.parentItemIndex] = giver.ParentEmptySlot;
-        giver.ItemLogicList[item.parentItemIndex].EmptySlot = true;
-        giver._parentUnit.Gold += item.Cost;
-        reciever._parentUnit.Gold -= item.Cost;
-        reciever._parentUnit.Armor += item.Armor;
-        reciever._parentUnit.Damage += item.Damage;
-        reciever._parentUnit.Health += item.Health;        
+    {        
+        if (reciever._parentUnit.Gold - item.Cost >= 0)
+        {
+            item._item.transform.position = reciever.PositionList[item.itemIndex];
+            item._item.transform.SetParent(nextParent.transform, true);
+            reciever.ItemList[item.itemIndex] = item._item;
+            reciever.ItemLogicList[item.itemIndex] = item;
+            reciever.ItemLogicList[item.itemIndex].EmptySlot = false;
+            giver.ItemLogicList[item.parentItemIndex] = giver.ParentEmptySlot.GetComponent<Item>();
+            giver.ItemList[item.parentItemIndex] = giver.ParentEmptySlot;
+            giver.ItemLogicList[item.parentItemIndex].EmptySlot = true;
+            giver._parentUnit.Gold += item.Cost;
+            reciever._parentUnit.Gold -= item.Cost;
+            reciever._parentUnit.Armor += item.Armor;
+            reciever._parentUnit.Damage += item.Damage;
+            reciever._parentUnit.Health += item.Health;
+        }
+        else
+        {
+            Debug.Log("Not enough mineralz");
+        }
+               
     }
 }

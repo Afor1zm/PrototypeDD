@@ -80,7 +80,12 @@ public class BattleLogic : MonoBehaviour
     {        
         _presenter.UnitSetTriggerAttack(attacker);
         _presenter.UnitSetTriggerHurt(victim);
-        victim.CurrentHealth = victim.CurrentHealth + victim.Armor - attacker.Damage;
+        var damage = victim.Armor - attacker.Damage;
+        if (damage >0)
+        {
+            damage = 0;
+        }
+        victim.CurrentHealth = victim.CurrentHealth + damage;
         if (victim.CurrentHealth <= 0)
         {            
             _presenter.UnitSetTriggerDie(victim);
