@@ -14,6 +14,7 @@ public class PlayerUnit : Unit
     public GameObject _vendorInventory;
     public GameObject _playerInventory;    
     public GameObject _playerObject;
+    public int golden;
     public bool canTrade;
     public int Level;     
 
@@ -30,6 +31,7 @@ public class PlayerUnit : Unit
    
     void Update()
     {
+        golden = Gold;
         
         uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
         if (InBattle == false)

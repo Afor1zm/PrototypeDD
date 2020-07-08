@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameLogic : MonoBehaviour
 {    
@@ -17,9 +18,6 @@ public class GameLogic : MonoBehaviour
     private Unit enemyObjectUnit;
     private UIHealthBar uiHealthBar;
     private EnemyUnit enemyUnitComponent;
-
-    
-
 
     private void Start()
     {
@@ -77,15 +75,14 @@ public class GameLogic : MonoBehaviour
         {
             reciver.Gold += giver.Gold;
             _playerInventory.Gold += giver.Gold;
-            _playerInventory.GoldText.text = " " + _playerInventory.Gold;
+            //_playerInventory.GoldText.text = " " + _playerInventory.Gold;
         }
         else
         {
             reciver.Gold += giver.Gold;
             _playerInventory.Gold -= giver.Gold;
-            _playerInventory.GoldText.text = " " + _playerInventory.Gold;
+            //_playerInventory.GoldText.text = " " + _playerInventory.Gold;
         }
-
     }
 
     public void ReciveExpirience(Unit giver, Unit reciver)
@@ -101,6 +98,11 @@ public class GameLogic : MonoBehaviour
         reciever.ItemLogicList[item.itemIndex].EmptySlot = false;        
         giver.ItemLogicList[item.parentItemIndex] = giver.ParentEmptySlot.GetComponent<Item>();
         giver.ItemList[item.parentItemIndex] = giver.ParentEmptySlot;
-        giver.ItemLogicList[item.parentItemIndex].EmptySlot = true;        
+        giver.ItemLogicList[item.parentItemIndex].EmptySlot = true;
+        giver._parentUnit.Gold += item.Cost;
+        reciever._parentUnit.Gold -= item.Cost;
+        reciever._parentUnit.Armor += item.Armor;
+        reciever._parentUnit.Damage += item.Damage;
+        reciever._parentUnit.Health += item.Health;        
     }
 }

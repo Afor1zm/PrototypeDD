@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VendorUnit : MonoBehaviour
+public class VendorUnit : Unit
 {
     public float displayTime = 4.0f;
     public GameObject dialogBox;

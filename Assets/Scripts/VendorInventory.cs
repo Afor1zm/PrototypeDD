@@ -9,9 +9,7 @@ public class VendorInventory : Inventory
     public GameObject EmptyItemSlot6;
     public GameObject EmptyItemSlot7;
     public GameObject EmptyItemSlot8;
-    public GameObject _vendorInventory;    
-    public Text _vendorGold;
-    
+    public GameObject _vendorInventory;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +23,7 @@ public class VendorInventory : Inventory
         ItemList.Add(EmptyItemSlot7);
         ItemList.Add(EmptyItemSlot8);
 
-        _vendorGold.text = "0";
+        GoldText.text = " " + _parentUnit.Gold;
 
         foreach (GameObject item in ItemList)
         {
@@ -55,6 +53,6 @@ public class VendorInventory : Inventory
     // Update is called once per frame
     void Update()
     {
-        
+        GoldText.text = " " + _parentUnit.Gold;
     }
 }

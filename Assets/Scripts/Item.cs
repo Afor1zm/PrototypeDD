@@ -15,9 +15,14 @@ public class Item : MonoBehaviour, IPointerClickHandler
     public VendorInventory _vendorInventory;
     public PlayerInventory _playerInventory;
     public int itemIndex;
-    public int parentItemIndex;  
+    public int parentItemIndex;
+    public int Cost;
+    public int Damage;
+    public int Health;
+    public int Armor;
     private VendorInventory vendorInventory;
     private PlayerInventory playerInventory;
+
 
     public void OnPointerClick(PointerEventData eventData)
     {

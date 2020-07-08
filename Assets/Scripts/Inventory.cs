@@ -7,7 +7,7 @@ using System.Linq;
 public class Inventory : MonoBehaviour
 {    
     public int Gold { get; set; }
-    public Text GoldText { get; set; }
+    public Text GoldText;
     public List<GameObject> ItemList;
     public List<Vector3> PositionList;
     public List<Item> ItemLogicList;
@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour
     public GameObject EmptyItemSlot3;
     public GameObject EmptyItemSlot4;    
     public Item slot;
+    public Unit _parentUnit;
 
     // Start is called before the first frame update
     void Start()
