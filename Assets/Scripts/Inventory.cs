@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     public List<GameObject> ItemList;
     public List<Vector3> PositionList;
     public List<Item> ItemLogicList;
+    public GameObject ParentEmptySlot;
     public GameObject EmptyItemSlot1;
     public GameObject EmptyItemSlot2;
     public GameObject EmptyItemSlot3;
@@ -38,5 +39,12 @@ public class Inventory : MonoBehaviour
     {
         var itemindex = ItemLogicList.IndexOf(item);
         return itemindex;
+    }
+    public void ShowEmpty(List<Item> itemlogic)
+    {
+        foreach (Item item in itemlogic)
+        {
+            Debug.Log(" " + item.EmptySlot);
+        }
     }
 }

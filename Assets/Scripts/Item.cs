@@ -15,18 +15,9 @@ public class Item : MonoBehaviour, IPointerClickHandler
     public VendorInventory _vendorInventory;
     public PlayerInventory _playerInventory;
     public int itemIndex;
-    public int parentItemIndex;
-
-    private Inventory inventory;
+    public int parentItemIndex;  
     private VendorInventory vendorInventory;
     private PlayerInventory playerInventory;
-    private Item itemComponent;
-    
-    public void Awake()
-    {        
-        inventory = _item.GetComponentInParent<Inventory>();
-        itemComponent = _item.GetComponent<Item>();
-    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -35,35 +26,30 @@ public class Item : MonoBehaviour, IPointerClickHandler
 
         if (playerInventory !=null & _item.name != "EmptySlot")
         {
-            _parentInventory = _vendorInventoryObject;
-            parentItemIndex = playerInventory.GetIndexItem(this);
-            itemIndex = _vendorInventory.GetFirstEmptySlot();
-            Debug.Log(" " + parentItemIndex);
-            if (_vendorInventory != null & _vendorInventory.ItemLogicList[itemIndex].EmptySlot == true)
-            {
-                _gameLogic.TransferItem(_playerInventory, _vendorInventory, this, _parentInventory);
-                playerInventory.ItemLogicList[parentItemIndex].EmptySlot = true;
-            }
+            Methods(_playerInventory, _vendorInventory, _playerInventoryObject, _vendorInventoryObject);            
         }
 
         if (vendorInventory !=null & _item.name != "EmptySlot")
         {
-            _parentInventory = _playerInventoryObject;
-            parentItemIndex = vendorInventory.GetIndexItem(this);
-            Debug.Log(" " + parentItemIndex);
-            if (_playerInventory.ItemLogicList.All(p => p.EmptySlot == false))
+            Methods(_vendorInventory, _playerInventory, _vendorInventoryObject, _playerInventoryObject);            
+        }        
+    }
+
+    public void Methods(Inventory giver, Inventory reciever, GameObject parentInventory, GameObject nextParentObject)
+    {
+        _parentInventory = parentInventory;
+        parentItemIndex = giver.GetIndexItem(this);
+        if (reciever.ItemLogicList.All(p => p.EmptySlot == false))
+        {
+            Debug.Log("Inventory FULL");
+        }
+        else
+        {
+            itemIndex = reciever.GetFirstEmptySlot();
+            if (giver != null & reciever.ItemLogicList[itemIndex].EmptySlot == true)
             {
-                Debug.Log("Inventory FULL");
+                _gameLogic.TransferItem(giver, reciever, this, nextParentObject);
             }
-            else
-            {
-                itemIndex = _playerInventory.GetFirstEmptySlot();
-                if (_vendorInventory != null & _playerInventory.ItemLogicList[itemIndex].EmptySlot == true)
-                {
-                    _gameLogic.TransferItem(_vendorInventory, _playerInventory, this, _parentInventory);
-                    vendorInventory.ItemLogicList[parentItemIndex].EmptySlot = true;
-                }
-            }
-        }           
+        }
     }
 }

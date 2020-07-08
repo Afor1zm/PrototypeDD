@@ -18,8 +18,7 @@ public class PlayerInventory : Inventory
 
         foreach (GameObject item in ItemList)
         {
-            PositionList.Add(item.transform.position);
-            Debug.Log("added");
+            PositionList.Add(item.transform.position);            
             slot = item.GetComponent<Item>();
             ItemLogicList.Add(slot);
             slot.EmptySlot = true;

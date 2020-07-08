@@ -92,14 +92,15 @@ public class GameLogic : MonoBehaviour
     {
         reciver.Expirience += giver.Expirience;
     }
-    public void TransferItem(Inventory giver, Inventory reciever, Item item, GameObject parent)
+    public void TransferItem(Inventory giver, Inventory reciever, Item item, GameObject nextParent)
     {
         item._item.transform.position = reciever.PositionList[item.itemIndex];
-        item._item.transform.SetParent(parent.transform, true);
+        item._item.transform.SetParent(nextParent.transform, true);
         reciever.ItemList[item.itemIndex] = item._item;        
         reciever.ItemLogicList[item.itemIndex] = item;
-        reciever.ItemLogicList[item.itemIndex].EmptySlot = false;
-        //Debug.Log(" " + item.parentItemIndex);
-        //giver.ItemLogicList[item.parentItemIndex].EmptySlot = true;
+        reciever.ItemLogicList[item.itemIndex].EmptySlot = false;        
+        giver.ItemLogicList[item.parentItemIndex] = giver.ParentEmptySlot.GetComponent<Item>();
+        giver.ItemList[item.parentItemIndex] = giver.ParentEmptySlot;
+        giver.ItemLogicList[item.parentItemIndex].EmptySlot = true;        
     }
 }

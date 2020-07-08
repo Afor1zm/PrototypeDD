@@ -31,15 +31,16 @@ public class VendorInventory : Inventory
         {
             if (item.name == "EmptySlot")
             {
-                PositionList.Add(item.transform.position);
-                Debug.Log("added");
+                PositionList.Add(item.transform.position);                
                 slot = item.GetComponent<Item>();
                 ItemLogicList.Add(slot);
                 slot.EmptySlot = true;
             }
             else 
             {
+                PositionList.Add(item.transform.position);
                 slot = item.GetComponent<Item>();
+                ItemLogicList.Add(slot);
                 slot.EmptySlot = false;
             }
             
