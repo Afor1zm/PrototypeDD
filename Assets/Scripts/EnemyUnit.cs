@@ -19,7 +19,7 @@ public class EnemyUnit : Unit
         _presenter.UnitGetRigidBody(_enemyUnit);
         endPosition = _presenter.GetEndPosition(_enemyUnit);
         Gold = 17;
-        Expirience = 15;
+        Expirience = 50;
     }
     private void Start()
     {
