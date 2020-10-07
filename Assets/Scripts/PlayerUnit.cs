@@ -26,7 +26,6 @@ public class PlayerUnit : Unit
     void Start()
     {
         Gold = 50;
-        //easter egg
         _levelExpirience.Add(50);
         _levelExpirience.Add(110);
         _levelExpirience.Add(180);
