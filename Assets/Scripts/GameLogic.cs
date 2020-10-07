@@ -102,6 +102,9 @@ public class GameLogic : MonoBehaviour
             giver.ItemList[item.parentItemIndex] = giver.ParentEmptySlot;
             giver.ItemLogicList[item.parentItemIndex].EmptySlot = true;
             giver._parentUnit.Gold += item.Cost;
+            giver._parentUnit.Armor -= item.Armor;
+            giver._parentUnit.Damage -= item.Damage;
+            giver._parentUnit.Health -= item.Health;
             reciever._parentUnit.Gold -= item.Cost;
             reciever._parentUnit.Armor += item.Armor;
             reciever._parentUnit.Damage += item.Damage;
