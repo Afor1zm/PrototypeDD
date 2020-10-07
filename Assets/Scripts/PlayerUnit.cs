@@ -20,6 +20,19 @@ public class PlayerUnit : Unit
 
     void Start()
     {
+
+        Gold = 50;
+        //easter egg        
+        _levelExpirience.Add(50);
+        _levelExpirience.Add(110);
+        _levelExpirience.Add(180);
+        _levelExpirience.Add(260);
+        _levelExpirience.Add(350);
+        _levelExpirience.Add(450);
+        _levelExpirience.Add(560);
+        _levelExpirience.Add(680);
+        Level = 0;
+        nextLevelExpirience = _levelExpirience[0];
         _playerInventory.SetActive(false);
         _vendorInventory.SetActive(false);
         Seed(true, 10, 15, 55, 10);
