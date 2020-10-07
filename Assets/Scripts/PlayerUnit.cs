@@ -23,12 +23,9 @@ public class PlayerUnit : Unit
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 
         Gold = 50;
         //easter egg        
-=======
->>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 =======
 >>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 =======
@@ -55,10 +52,7 @@ public class PlayerUnit : Unit
         nextLevelExpirience = _levelExpirience[0];
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 =======
 >>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 
@@ -78,7 +72,6 @@ public class PlayerUnit : Unit
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         golden = Gold;
         
 =======
@@ -90,11 +83,6 @@ public class PlayerUnit : Unit
 >>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 =======
         
-=======
-        
-
-        golden = Gold;
->>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 
         golden = Gold;
 >>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
