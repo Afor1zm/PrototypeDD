@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\Interfaces\IUnit.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
-    <Compile Include="Assets\Scripts\LevelUpButton.cs" />
     <Compile Include="Assets\Scripts\ParallaxBackground.cs" />
     <Compile Include="Assets\Scripts\ParallaxForTeleport.cs" />
     <Compile Include="Assets\Scripts\PlayerInventory.cs" />
