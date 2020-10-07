@@ -25,6 +25,7 @@ public class PlayerUnit : Unit
 
     void Start()
     {
+        Gold = 50;
         _levelExpirience.Add(50);
         _levelExpirience.Add(110);
         _levelExpirience.Add(180);
@@ -42,18 +43,14 @@ public class PlayerUnit : Unit
         _playerUnit.State = States.ActiveWorld;
         _gui.GetUnit(_playerUnit);
         //endPosition = _presenter.GetEndPosition(_playerUnit);
-        nextLevelExpirience = _levelExpirience[0];
-
-        _levelUpArmorButton._plusButton.SetActive(true);
-        _levelUpDamageButton._plusButton.SetActive(true);
-        _levelUpHealthButton._plusButton.SetActive(true);
     }
 
     void Update()
     {
-        
 
+        
         golden = Gold;
+        
 
         uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
         if (InBattle == false)

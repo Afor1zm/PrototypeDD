@@ -12,7 +12,7 @@ public class LevelUpButton : MonoBehaviour, IPointerClickHandler
     public string _attributeName;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _plusButton.SetActive(false);
     }
@@ -21,6 +21,7 @@ public class LevelUpButton : MonoBehaviour, IPointerClickHandler
         if (_attributeName == "Health")
         {
             _playerUnit.Health = _playerUnit.Health + 15;
+            _playerUnit.CurrentHealth = _playerUnit.Health;
         }
         if (_attributeName == "Armor")
         {
