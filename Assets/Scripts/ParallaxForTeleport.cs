@@ -16,8 +16,8 @@ public class ParallaxForTeleport : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        transform.position += deltaMovement * parallaxEffectMultiplier;
+        float deltaMovement = cameraTransform.position.x - lastCameraPosition.x;
+        transform.position = new Vector3(transform.position.x + (deltaMovement * parallaxEffectMultiplier), transform.position.y, transform.position.z);
         lastCameraPosition = cameraTransform.position;
     }
 
