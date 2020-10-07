@@ -22,12 +22,9 @@ public class PlayerUnit : Unit
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 
         Gold = 50;
         //easter egg        
-=======
->>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 =======
 >>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 =======
@@ -51,10 +48,7 @@ public class PlayerUnit : Unit
         //endPosition = _presenter.GetEndPosition(_playerUnit);
         nextLevelExpirience = _levelExpirience[0];
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 
         _levelUpArmorButton._plusButton.SetActive(true);
         _levelUpDamageButton._plusButton.SetActive(true);
@@ -71,16 +65,10 @@ public class PlayerUnit : Unit
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
         golden = Gold;
         
 =======
         
-=======
-        
-
-        golden = Gold;
->>>>>>> parent of c631e27... Fixed bug "vendor stats abusing"
 =======
         
 
