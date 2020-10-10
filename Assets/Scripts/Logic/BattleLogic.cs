@@ -6,11 +6,6 @@ using System.Linq;
 public class BattleLogic : MonoBehaviour
 {
     private const float DELAY = 2f;
-    private Unit _target;
-    private int enemyCursor = 0;
-
-    private bool IsEnemyTurn { get { return _battleUnitList[numberActiveUnit].State == Unit.States.ActiveBattle & _battleUnitList[numberActiveUnit].name != "Player"; } }
-
     public PlayerUnit _player;
     public List<Unit> _battleUnitList;
     public List<Unit> _enemyList;
@@ -18,9 +13,12 @@ public class BattleLogic : MonoBehaviour
     public GameLogic _gameLogic;
     public BattleStart _battleStart;
     public GameObject _deliteTriggerZone;
-    
-    public Unit.States states;       
+    public Unit.States _states;
     public int numberActiveUnit;
+    private Unit target;
+    private int enemyCursor = 0;
+    private bool IsEnemyTurn { get { return _battleUnitList[numberActiveUnit].State == Unit.States.ActiveBattle & _battleUnitList[numberActiveUnit].name != "Player"; } }
+
 
 
     private void LateUpdate()
@@ -51,7 +49,7 @@ public class BattleLogic : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Attack(_player, _target);
+                Attack(_player, target);
                 if (_enemyList[0] != null)
                 {
                     SwitchTarget(_enemyList[0]);
@@ -62,7 +60,7 @@ public class BattleLogic : MonoBehaviour
 
     public void StartBattle(Collider2D other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.name == _gameLogic._logicDictionary[1])
         {
             numberActiveUnit = 0;            
             _battleUnitList[0].State = Unit.States.ActiveBattle;
@@ -87,16 +85,11 @@ public class BattleLogic : MonoBehaviour
         }
         victim.CurrentHealth = victim.CurrentHealth + damage;
         if (victim.CurrentHealth <= 0)
-        {            
-            _presenter.UnitSetTriggerDie(victim);
-            _presenter.UnitSetUntarget(victim);
-            _battleUnitList.Remove(_battleUnitList[_battleUnitList.IndexOf(victim)]);
-            _enemyList.Remove(_enemyList[_enemyList.IndexOf(victim)]);
-            _gameLogic.TransferGold(victim, attacker);
-            _gameLogic.ReciveExpirience(victim, attacker);
+        {
+            Death(attacker, victim);
         }
 
-        numberActiveUnit = numberActiveUnit + 1;
+        numberActiveUnit ++;
         if (numberActiveUnit >= _battleUnitList.Count & _battleUnitList.Count !=0)
         {
             numberActiveUnit = 0;
@@ -116,12 +109,12 @@ public class BattleLogic : MonoBehaviour
 
     private void SwitchTarget(Unit newTarget)
     {
-        if (_target != null)
+        if (target != null)
         {
-            _presenter.UnitSetUntarget(_target);
+            _presenter.UnitSetUntarget(target);
         }
-        _target = newTarget;
-        _presenter.UnitSetTarget(_target);
+        target = newTarget;
+        _presenter.UnitSetTarget(target);
     }
 
     private void NextTarget(int direction)
@@ -140,5 +133,15 @@ public class BattleLogic : MonoBehaviour
             SwitchTarget(_enemyList[enemyCursor]);
         }
         else {SwitchTarget(_enemyList[0]); }        
+    }
+
+    public void Death(Unit attacker, Unit victim)
+    {
+        _presenter.UnitSetTriggerDie(victim);
+        _presenter.UnitSetUntarget(victim);
+        _battleUnitList.Remove(_battleUnitList[_battleUnitList.IndexOf(victim)]);
+        _enemyList.Remove(_enemyList[_enemyList.IndexOf(victim)]);
+        _gameLogic.TransferGold(victim, attacker);
+        _gameLogic.ReciveExpirience(victim, attacker);
     }
 }

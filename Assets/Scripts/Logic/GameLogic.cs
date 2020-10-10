@@ -14,11 +14,19 @@ public class GameLogic : MonoBehaviour
     public GameObject _parentUI;
     public Inventory _playerInventory;
     public Inventory _vendorInventory;
+    public Dictionary<int, string> _logicDictionary = new Dictionary<int, string>();
     private GUIUnitParameters GetGUIComponent;
     private Unit enemyObjectUnit;
     private UIHealthBar uiHealthBar;
     private EnemyUnit enemyUnitComponent;
 
+    private void Awake()
+    {
+        _logicDictionary.Add(1, "Player");
+        _logicDictionary.Add(2, "Health");
+        _logicDictionary.Add(3, "Armor");
+        _logicDictionary.Add(4, "Damage");
+    }
     private void Start()
     {
         _battleLogic.enabled = false;
@@ -39,8 +47,7 @@ public class GameLogic : MonoBehaviour
     }
 
     public void CreateOrcEnemy(float xCoordinate, float yCoordinate, float Zcoordinate, List<Unit> _battleUnitList, List<Unit> _enemyList, GameObject unitUI, float distance)
-    {
-        
+    {        
         _enemyObject = Instantiate(_enemyObjectPrefab, new Vector3(xCoordinate, yCoordinate, Zcoordinate), Quaternion.identity) as GameObject;
         enemyObjectUnit = _enemyObject.GetComponent<Unit>();
         enemyUnitComponent = _enemyObject.GetComponent<EnemyUnit>();
@@ -56,7 +63,7 @@ public class GameLogic : MonoBehaviour
         enemyUnitComponent._enemyUIObject = _uiObject;
 
         uiHealthBar = _uiObject.GetComponentInChildren<UIHealthBar>();
-        enemyUnitComponent.uiHealthbar = uiHealthBar;        
+        enemyUnitComponent._uiHealthbar = uiHealthBar;        
         _uiObjectPrefab.transform.SetParent(_parentUI.transform, false);
     }
 
@@ -74,14 +81,12 @@ public class GameLogic : MonoBehaviour
         if (reciver.IsPlayerTeam)
         {
             reciver.Gold += giver.Gold;
-            _playerInventory.Gold += giver.Gold;
-            //_playerInventory.GoldText.text = " " + _playerInventory.Gold;
+            _playerInventory.Gold += giver.Gold;            
         }
         else
         {
             reciver.Gold += giver.Gold;
-            _playerInventory.Gold -= giver.Gold;
-            //_playerInventory.GoldText.text = " " + _playerInventory.Gold;
+            _playerInventory.Gold -= giver.Gold;            
         }
     }
 

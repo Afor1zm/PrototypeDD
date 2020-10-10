@@ -64,25 +64,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AbstractClasses\Unit.cs" />
-    <Compile Include="Assets\Scripts\BattleLogic.cs" />
-    <Compile Include="Assets\Scripts\BattleStart.cs" />
-    <Compile Include="Assets\Scripts\EnemyUnit.cs" />
-    <Compile Include="Assets\Scripts\GUIUnitParameters.cs" />
-    <Compile Include="Assets\Scripts\GameLogic.cs" />
+    <Compile Include="Assets\Scripts\Graphic Scripts\GUIUnitParameters.cs" />
+    <Compile Include="Assets\Scripts\Graphic Scripts\ParallaxBackground.cs" />
+    <Compile Include="Assets\Scripts\Graphic Scripts\ParallaxForTeleport.cs" />
+    <Compile Include="Assets\Scripts\Graphic Scripts\Presenter.cs" />
+    <Compile Include="Assets\Scripts\Graphic Scripts\UIHealthBar.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IUnit.cs" />
-    <Compile Include="Assets\Scripts\Inventory.cs" />
-    <Compile Include="Assets\Scripts\Item.cs" />
-    <Compile Include="Assets\Scripts\LevelUpButton.cs" />
-    <Compile Include="Assets\Scripts\ParallaxBackground.cs" />
-    <Compile Include="Assets\Scripts\ParallaxForTeleport.cs" />
-    <Compile Include="Assets\Scripts\PlayerInventory.cs" />
-    <Compile Include="Assets\Scripts\PlayerUnit.cs" />
-    <Compile Include="Assets\Scripts\Presenter.cs" />
-    <Compile Include="Assets\Scripts\Teleport.cs" />
-    <Compile Include="Assets\Scripts\UIHealthBar.cs" />
-    <Compile Include="Assets\Scripts\VendorInventory.cs" />
-    <Compile Include="Assets\Scripts\VendorTriggerScript.cs" />
-    <Compile Include="Assets\Scripts\VendorUnit.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Item.cs" />
+    <Compile Include="Assets\Scripts\Inventory\PlayerInventory.cs" />
+    <Compile Include="Assets\Scripts\Inventory\VendorInventory.cs" />
+    <Compile Include="Assets\Scripts\Logic\BattleLogic.cs" />
+    <Compile Include="Assets\Scripts\Logic\GameLogic.cs" />
+    <Compile Include="Assets\Scripts\Logic\LevelUpButton.cs" />
+    <Compile Include="Assets\Scripts\Trigger\BattleStart.cs" />
+    <Compile Include="Assets\Scripts\Trigger\Teleport.cs" />
+    <Compile Include="Assets\Scripts\Trigger\VendorTriggerScript.cs" />
+    <Compile Include="Assets\Scripts\Unit\EnemyUnit.cs" />
+    <Compile Include="Assets\Scripts\Unit\PlayerUnit.cs" />
+    <Compile Include="Assets\Scripts\Unit\VendorUnit.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -17,16 +17,8 @@ Assets/Scripts/AbstractClasses/*.meta
 Assets/Scripts/AbstractClasses/*.cs.meta
 Assets/Scripts/Interfaces/*.meta
 Assets/Scripts/Interfaces/*.cs.meta
-Assets/Scripts/Inventory/*.meta
-Assets/Scripts/Inventory/*.cs.meta
-Assets/Scripts/Logic/*.meta
-Assets/Scripts/Logic/*.cs.meta
 Assets/Scripts/Graphic Scripts/*.meta
 Assets/Scripts/Graphic Scripts/*.cs.meta
-Assets/Scripts/Trigger/*.meta
-Assets/Scripts/Trigger/*.cs.meta
-Assets/Scripts/Unit/*.meta
-Assets/Scripts/Unit/*.cs.meta
 /Assets/2ndtest.unity
 /Assets/worksFine.unity
 /Assets/Use destroy enemy on another class.unity

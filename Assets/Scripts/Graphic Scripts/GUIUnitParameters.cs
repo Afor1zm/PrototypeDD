@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GUIUnitParameters : MonoBehaviour
 {
     public Unit _unit;
-    public Text _healthText;
-    public Text _armorText;
-    public Text _damageText;    
+    public Text _healthLabel;
+    public Text _armorLabel;
+    public Text _damageLabel;    
 
     private void Awake()
     {
@@ -17,9 +17,9 @@ public class GUIUnitParameters : MonoBehaviour
 
     private void Update()
     {
-        _healthText.text = " " + _unit.CurrentHealth + "/" + _unit.Health;
-        _armorText.text = " " + _unit.Armor;
-        _damageText.text = " " + _unit.Damage;
+        _healthLabel.text = $" {_unit.CurrentHealth}/{_unit.Health}";        
+        _armorLabel.text = $"{_unit.Armor}";
+        _damageLabel.text = $"{_unit.Damage}";
     }
 
     public Unit GetUnit(Unit unit)

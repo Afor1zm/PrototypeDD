@@ -10,8 +10,7 @@ public class VendorInventory : Inventory
     public GameObject EmptyItemSlot7;
     public GameObject EmptyItemSlot8;
     public GameObject _vendorInventory;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         ItemList.Add(EmptyItemSlot1);
@@ -22,12 +21,11 @@ public class VendorInventory : Inventory
         ItemList.Add(EmptyItemSlot6);
         ItemList.Add(EmptyItemSlot7);
         ItemList.Add(EmptyItemSlot8);
-
-        GoldText.text = " " + _parentUnit.Gold;
+        GoldLabel.text = " " + _parentUnit.Gold;
 
         foreach (GameObject item in ItemList)
         {
-            if (item.name == "EmptySlot")
+            if (item.name == _inventoryDictionary[1])
             {
                 PositionList.Add(item.transform.position);                
                 slot = item.GetComponent<Item>();
@@ -41,18 +39,11 @@ public class VendorInventory : Inventory
                 ItemLogicList.Add(slot);
                 slot.EmptySlot = false;
             }
-            
-            //PositionList.Add(item.transform.position);
-            //Debug.Log("added");
-            //slot = item.GetComponent<Item>();
-            //ItemLogicList.Add(slot);
-            //slot.EmptySlot = true;
         }
     }
-
-    // Update is called once per frame
+   
     void Update()
     {
-        GoldText.text = " " + _parentUnit.Gold;
+        GoldLabel.text = " " + _parentUnit.Gold;
     }
 }

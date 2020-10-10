@@ -23,18 +23,17 @@ public class Item : MonoBehaviour, IPointerClickHandler
     private VendorInventory vendorInventory;
     private PlayerInventory playerInventory;
 
-
     public void OnPointerClick(PointerEventData eventData)
     {
         vendorInventory = _item.GetComponentInParent<VendorInventory>();
         playerInventory = _item.GetComponentInParent<PlayerInventory>();
 
-        if (playerInventory !=null & _item.name != "EmptySlot")
+        if (playerInventory !=null & _item.name != _playerInventory._inventoryDictionary[1])
         {
             Methods(_playerInventory, _vendorInventory, _playerInventoryObject, _vendorInventoryObject);            
         }
 
-        if (vendorInventory !=null & _item.name != "EmptySlot")
+        if (vendorInventory !=null & _item.name != _playerInventory._inventoryDictionary[1])
         {
             Methods(_vendorInventory, _playerInventory, _vendorInventoryObject, _playerInventoryObject);            
         }        

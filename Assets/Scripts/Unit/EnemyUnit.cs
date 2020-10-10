@@ -7,12 +7,11 @@ public class EnemyUnit : Unit
 {    
     public EnemyUnit _enemyUnit;
     public Presenter _presenter;
-    public UIHealthBar uiHealthbar;
+    public UIHealthBar _uiHealthbar;
     public GameObject _enemyObject;
     public GameObject _enemyUIObject;
     Vector2 endPosition;
-
-    // Start is called before the first frame update
+    
     void Awake()
     {
         Seed(false, 5, 15, 20, 5);
@@ -20,18 +19,13 @@ public class EnemyUnit : Unit
         endPosition = _presenter.GetEndPosition(_enemyUnit);
         Gold = 17;
         Expirience = 50;
-    }
-    private void Start()
-    {
-        
-    }
+    } 
 
-    // Update is called once per frame
     void Update()
     {
-        if (uiHealthbar != null)
+        if (_uiHealthbar != null)
         {
-            uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
+            _uiHealthbar._instance.SetValue(CurrentHealth / (float)Health);
         }
         
         if (endPosition != _enemyUnit.rigidbody2d.position)

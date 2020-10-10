@@ -9,12 +9,11 @@ public class PlayerUnit : Unit
     public PlayerUnit _playerUnit;
     public Presenter _presenter;
     public GUIUnitParameters _gui;
-    public UIHealthBar uiHealthbar;
+    public UIHealthBar _uiHealthbar;
     public GameLogic _gameLogic;
     public GameObject _vendorInventory;
     public GameObject _playerInventory;
-    public GameObject _playerObject;
-    public int golden;
+    public GameObject _playerObject;    
     public bool canTrade;
     public int Level;
     public List<int> _levelExpirience;
@@ -41,18 +40,12 @@ public class PlayerUnit : Unit
         Seed(true, 10, 15, 55, 10);
         _presenter.UnitGetRigidBody(_playerUnit);
         _playerUnit.State = States.ActiveWorld;
-        _gui.GetUnit(_playerUnit);
-        //endPosition = _presenter.GetEndPosition(_playerUnit);
+        _gui.GetUnit(_playerUnit);        
     }
 
     void Update()
-    {
-
-        
-        golden = Gold;
-        
-
-        uiHealthbar.instance.SetValue(CurrentHealth / (float)Health);
+    {        
+        _uiHealthbar._instance.SetValue(CurrentHealth / (float)Health);
         if (InBattle == false)
         {
             _presenter.PlayerMove(_playerUnit);

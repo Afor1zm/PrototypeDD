@@ -29,5 +29,4 @@ public class ParallaxBackground : MonoBehaviour
             transform.position = new Vector3(cameraTransform.position.x + offsetPosition, transform.position.y);
         }
     }
-
 }

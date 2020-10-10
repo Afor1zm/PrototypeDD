@@ -4,7 +4,7 @@ using System.Net;
 using UnityEngine;
 
 public class Presenter : MonoBehaviour
-{    
+{
     public void PlayerMove(Unit unit)
     {
         float horizontal = Input.GetAxis("Horizontal");

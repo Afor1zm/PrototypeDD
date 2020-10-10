@@ -8,18 +8,15 @@ using UnityEngine.UIElements;
 public class BattleStart : MonoBehaviour
 {
     public BattleStart _battleStart;
-
     // _battleTriggerZone need for GameLogic. It's need to know wich object should be destroy after battle.
     public GameObject _battleTriggerZone;
     public List<Unit> _battleUnitList = new List<Unit>();
     public List<Unit> _enemyList = new List<Unit>();
     public BattleLogic _battleLogic;
     public GameLogic _gameLogic;
-    public PlayerUnit _playerUnit;
-    private float playerPosition;
+    public PlayerUnit _playerUnit;    
     public GameObject _unitUI;
-    
-
+    private float playerPosition;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

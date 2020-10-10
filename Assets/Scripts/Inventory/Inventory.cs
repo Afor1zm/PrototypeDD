@@ -7,7 +7,7 @@ using System.Linq;
 public class Inventory : MonoBehaviour
 {    
     public int Gold { get; set; }
-    public Text GoldText;
+    public Text GoldLabel;
     public List<GameObject> ItemList;
     public List<Vector3> PositionList;
     public List<Item> ItemLogicList;
@@ -18,16 +18,11 @@ public class Inventory : MonoBehaviour
     public GameObject EmptyItemSlot4;    
     public Item slot;
     public Unit _parentUnit;
+    public Dictionary<int, string> _inventoryDictionary = new Dictionary<int, string>();
 
-    // Start is called before the first frame update
-    void Start()
-    { 
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        _inventoryDictionary.Add(1,"EmptySlot");
     }
 
     public int GetFirstEmptySlot()

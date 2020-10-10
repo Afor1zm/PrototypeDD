@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInventory : Inventory
-{       
-    // Start is called before the first frame update
+{    
     void Start()
-    {        
-        GoldText.text = "" + _parentUnit.Gold;        
+    {
+        GoldLabel.text = "" + _parentUnit.Gold;        
         ItemList.Add(EmptyItemSlot1);
         ItemList.Add(EmptyItemSlot2);
         ItemList.Add(EmptyItemSlot3);
@@ -23,9 +22,8 @@ public class PlayerInventory : Inventory
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        GoldText.text = "" + _parentUnit.Gold;
+        GoldLabel.text = "" + _parentUnit.Gold;
     }
 }
